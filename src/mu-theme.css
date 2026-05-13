@@ -1,0 +1,51 @@
+:root {
+  /* ボディ 背景色 */
+  --body-background-color: #020617;
+  /* ボディ 文字色 */
+  --body-color: #e8fbff;
+
+  /* カラー：プライマリ背景色 */
+  --color-primmary: #030817;
+  /* カラー：プライマリアクセント色 */
+  --color-primary: #19c7d5;
+  /* カラー：プライマリ上の文字色 */
+  --color-primary-contract: #e8fbff;
+  /* カラー：情報背景色 */
+  --color-info: #1699f2;
+  /* カラー：情報上の文字色 */
+  --color-info-contract: #020617;
+  /* カラー：成功背景色 */
+  --color-success: #18c7d7;
+  /* カラー：成功上の文字色 */
+  --color-success-contract: #03131c;
+  /* カラー：エラー背景色 */
+  --color-error: #ff6b9a;
+  /* カラー：エラー上の文字色 */
+  --color-error-contract: #1b0610;
+
+  /* ヘッダ 背景グラデーション開始色 */
+  --header-bg-color-start: #030817;
+  /* ヘッダ 背景グラデーション中間色 */
+  --header-bg-color-middle: #071d3d;
+  /* ヘッダ 背景グラデーション終了色 */
+  --header-bg-color-end: #06323c;
+  /* ヘッダ 背景 */
+  --header-background: linear-gradient(
+    90deg,
+    var(--header-bg-color-start) 0%,
+    var(--header-bg-color-middle) 48%,
+    var(--header-bg-color-end) 100%
+  );
+  /* ヘッダ 下線色 */
+  --header-border-color: rgba(25, 199, 213, 0.35);
+  /* ヘッダ 影 */
+  --header-box-shadow: 0 16px 40px rgba(2, 6, 23, 0.5);
+  /* ヘッダ 下余白 */
+  --header-margin-bottom: 1.5em;
+  /* ヘッダ 内側余白 */
+  --header-padding: 0.7em 1em;
+  /* ヘッダ サブタイトル文字色 */
+  --header-sub-title-color: #7ddff0;
+  /* ヘッダ リンク文字色 */
+  --header-link-color: #9eefff;
+}
