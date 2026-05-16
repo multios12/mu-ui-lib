@@ -35,3 +35,9 @@
 ```svelte
 <MuDateField bind:value={dateValue} editable={isNew} />
 ```
+
+### Markdown フィールド
+
+- `MuMdField`
+  - Markdown 入力用の textarea とツールバーをまとめたフィールドです
+  - `toolbarButtons` で画面固有のツールバーボタンを追加できます

@@ -19,6 +19,7 @@
     "check": "echo \"mu-ui-lib has no standalone checks yet\""
   },
   "peerDependencies": {
+    "lucide-svelte": "^1.0.0",
     "svelte": "^4.0.0 || ^5.0.0"
   }
 }
