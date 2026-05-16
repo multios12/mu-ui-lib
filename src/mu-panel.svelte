@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PrimaryButton from "./buttons/mu-primary-button.svelte";
+  import MuPrimaryButton from "./buttons/mu-primary-button.svelte";
 
   export let title: string;
   export let sites: Array<{ name: string; href: string; icon?: string }> = [];
@@ -9,7 +9,7 @@
   <h2>{title}</h2>
   <div>
     {#each sites as site}
-      <PrimaryButton href={site.href} icon={site.icon} name={site.name} />
+      <MuPrimaryButton href={site.href} icon={site.icon} name={site.name} />
     {/each}
     <br />
     <br />

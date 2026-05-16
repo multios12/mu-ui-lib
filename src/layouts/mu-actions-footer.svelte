@@ -4,10 +4,8 @@
     statusLabel?: string;
   }
 
-  let {
-    hasUnsavedChanges = false,
-    statusLabel = "未保存の変更あり",
-  }: Props = $props();
+  let { hasUnsavedChanges = false, statusLabel = "未保存の変更あり" }: Props =
+    $props();
 </script>
 
 <footer>
@@ -25,7 +23,7 @@
 
 <style>
   footer {
-    background-color: #dbdbdb;
+    background-color: #353a36;
     bottom: 0;
     left: 0;
     margin: 0;

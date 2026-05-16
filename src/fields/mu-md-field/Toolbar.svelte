@@ -88,7 +88,7 @@
     {/if}
 
     <button
-      class="button md-paragraph-trigger"
+      class="md-button md-paragraph-trigger"
       type="button"
       aria-haspopup="menu"
       aria-expanded={isParagraphMenuOpen}
@@ -96,16 +96,16 @@
     >
       {#key currentParagraph.key}
         {#if currentParagraph.badge}
-          <span class="icon md-paragraph-icon-slot">
+          <span class="md-icon md-paragraph-icon-slot">
             <span class="md-paragraph-badge">{currentParagraph.badge}</span>
           </span>
         {:else}
-          <span class="icon md-paragraph-icon-slot">
+          <span class="md-icon md-paragraph-icon-slot">
             <CurrentParagraphIcon />
           </span>
         {/if}
       {/key}
-      <span class="icon is-small">
+      <span class="md-icon md-icon-small">
         <ChevronDown size={16} />
       </span>
     </button>
@@ -115,19 +115,19 @@
         {#each paragraphs as item}
           {@const ParagraphIcon = item.icon ?? Grip}
           <button
-            class="button is-ghost md-paragraph-option"
-            class:is-active={item.key === value}
+            class="md-button md-paragraph-option"
+            class:md-active={item.key === value}
             type="button"
             role="menuitemradio"
             aria-checked={item.key === value}
             onclick={() => handleChange(item.key)}
           >
             {#if item.badge}
-              <span class="icon md-paragraph-icon-slot">
+              <span class="md-icon md-paragraph-icon-slot">
                 <span class="md-paragraph-badge">{item.badge}</span>
               </span>
             {:else}
-              <span class="icon md-paragraph-icon-slot">
+              <span class="md-icon md-paragraph-icon-slot">
                 <ParagraphIcon />
               </span>
             {/if}
@@ -138,8 +138,8 @@
     {/if}
   </div>
   <button
-    class="button is-ghost md-toolbar-button"
-    class:is-active={bold}
+    class="md-button md-toolbar-button"
+    class:md-active={bold}
     type="button"
     aria-label="bold"
     onclick={onBold}
@@ -147,8 +147,8 @@
     <Bold />
   </button>
   <button
-    class="button is-ghost md-toolbar-button"
-    class:is-active={italic}
+    class="md-button md-toolbar-button"
+    class:md-active={italic}
     type="button"
     aria-label="italic"
     onclick={onItalic}
@@ -156,8 +156,8 @@
     <Italic />
   </button>
   <button
-    class="button is-ghost md-toolbar-button"
-    class:is-active={strike}
+    class="md-button md-toolbar-button"
+    class:md-active={strike}
     type="button"
     aria-label="strike"
     onclick={onStrike}
@@ -165,8 +165,8 @@
     <Strikethrough />
   </button>
   <button
-    class="button is-ghost md-toolbar-button"
-    class:is-active={link}
+    class="md-button md-toolbar-button"
+    class:md-active={link}
     type="button"
     aria-label="link"
     onclick={onLink}
@@ -175,8 +175,8 @@
   </button>
   {#each extraButtons as button (button.key)}
     <button
-      class="button is-ghost md-toolbar-button"
-      class:is-active={button.active}
+      class="md-button md-toolbar-button"
+      class:md-active={button.active}
       type="button"
       aria-label={button.ariaLabel}
       title={button.title}
@@ -205,6 +205,44 @@
 
   .md-paragraph-select {
     position: relative;
+  }
+
+  .md-button {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in srgb, white 12%, transparent);
+    border-radius: 0.45rem;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .md-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  .md-button:not(:disabled):hover {
+    background: color-mix(in srgb, white 8%, transparent);
+  }
+
+  .md-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+  }
+
+  .md-icon-small {
+    width: 1rem;
+    height: 1rem;
   }
 
   .md-paragraph-backdrop {
@@ -238,7 +276,7 @@
     min-width: 13rem;
     padding: 0.25rem;
     border: 1px solid color-mix(in srgb, white 12%, transparent);
-    border-radius: var(--bulma-radius-large);
+    border-radius: 0.75rem;
     background: #161b28;
     box-shadow: 0 0.85rem 2rem color-mix(in srgb, black 28%, transparent);
   }
@@ -271,7 +309,7 @@
     font-size: 0.88rem;
   }
 
-  .md-paragraph-option.is-active {
+  .md-paragraph-option.md-active {
     color: #8ec5ff;
     background: color-mix(in srgb, #2f7df4 18%, transparent);
   }
@@ -283,11 +321,11 @@
     padding: 0 0.2rem;
   }
 
-  .md-toolbar-button.is-active {
-    color: var(--bulma-link);
-    background: color-mix(in srgb, var(--bulma-link) 12%, transparent);
+  .md-toolbar-button.md-active {
+    color: #3e8ed0;
+    background: color-mix(in srgb, #3e8ed0 12%, transparent);
     box-shadow: inset 0 0 0 1px
-      color-mix(in srgb, var(--bulma-link) 26%, transparent);
+      color-mix(in srgb, #3e8ed0 26%, transparent);
   }
 
   .md-toolbar-button-label {
