@@ -14,20 +14,34 @@
   import type { HeaderButtonConfig } from "./mu-header-button.svelte";
 
   export let title: string;
-  export let subTitle: string;
+  export let subTitle = "";
   export let headerButton: HeaderButtonConfig | undefined = undefined;
   export let logoutHref = "auth/api/logout";
+  export let showLogout = true;
   export let tabs: HeaderTab[] = [];
   export let activeTab: string | undefined = undefined;
+  export let ontabselect:
+    | ((event: CustomEvent<HeaderTab>) => void)
+    | undefined = undefined;
 
   const dispatch = createEventDispatcher<{ tabselect: HeaderTab }>();
+  const getTabId = (tab: HeaderTab) => tab.id ?? tab.label;
+  const getActiveTabId = () => {
+    const active = tabs.find((tab) => tab.active);
+    return active ? getTabId(active) : undefined;
+  };
+
+  let selectedTab: string | undefined = undefined;
+  $: selectedTabId = selectedTab ?? activeTab ?? getActiveTabId();
 
   function isActive(tab: HeaderTab) {
-    return tab.active || (!!activeTab && (tab.id ?? tab.label) === activeTab);
+    return getTabId(tab) === selectedTabId;
   }
 
   function selectTab(tab: HeaderTab) {
     if (!tab.disabled) {
+      selectedTab = getTabId(tab);
+      ontabselect?.(new CustomEvent("tabselect", { detail: tab }));
       dispatch("tabselect", tab);
     }
   }
@@ -46,7 +60,8 @@
             <a
               href={tab.href}
               role="tab"
-              aria-selected={isActive(tab)}
+              aria-selected={isActive(tab) ? "true" : "false"}
+              data-active={isActive(tab) ? "true" : "false"}
               onclick={() => selectTab(tab)}
             >
               {tab.label}
@@ -55,7 +70,8 @@
             <button
               type="button"
               role="tab"
-              aria-selected={isActive(tab)}
+              aria-selected={isActive(tab) ? "true" : "false"}
+              data-active={isActive(tab) ? "true" : "false"}
               disabled={tab.disabled}
               onclick={() => selectTab(tab)}
             >
@@ -66,11 +82,13 @@
       </nav>
     {/if}
     <HeaderButton button={headerButton} position="after-sub-title" />
-    <HeaderButton button={headerButton} position="before-logout" />
-    <a href={logoutHref} aria-label="Logout"
-      ><span class="material-icons">logout</span></a
-    >
-    <HeaderButton button={headerButton} position="after-logout" />
+    {#if showLogout}
+      <HeaderButton button={headerButton} position="before-logout" />
+      <a href={logoutHref} aria-label="Logout"
+        ><span class="material-icons">logout</span></a
+      >
+      <HeaderButton button={headerButton} position="after-logout" />
+    {/if}
   </div>
 </header>
 
@@ -123,13 +141,16 @@
   [role="tab"] {
     background: transparent;
     border: 0;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     color: var(--header-sub-title-color);
     cursor: pointer;
     font: inherit;
     line-height: 1.4;
     padding: var(--header-tab-padding, 0.15em 0 0.25em);
     text-decoration: none;
+    transition:
+      border-color 0.15s ease,
+      color 0.15s ease;
   }
 
   a[role="tab"]:visited {
@@ -140,12 +161,14 @@
     color: var(--color-primary-contract);
   }
 
-  [role="tab"][aria-selected="true"] {
+  [role="tab"][aria-selected="true"],
+  [role="tab"][data-active="true"] {
     border-bottom-color: var(
       --header-tab-active-border-color,
       var(--color-primary)
     );
-    color: var(--color-primary-contract);
+    color: var(--header-tab-active-color, #ffffff);
+    font-weight: 700;
   }
 
   button[role="tab"]:disabled {

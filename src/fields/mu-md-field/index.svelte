@@ -939,10 +939,11 @@
     box-sizing: border-box;
     align-self: stretch;
     padding: 0.9rem 1rem;
-    border: 1px solid #d9dee8;
+    border: 1px solid #394152;
     border-radius: 0.75rem;
-    background: #ffffff;
-    color: #1f2937;
+    background-color: #161b28;
+    background-image: linear-gradient(180deg, #1b2030, #161b28);
+    color: #eef2ff;
     font-family:
       "Iosevka Custom",
       "SFMono-Regular",
@@ -951,14 +952,25 @@
       monospace;
     font-size: 0.96rem;
     line-height: 1.65;
+    caret-color: #8ec5ff;
     tab-size: 2;
     white-space: pre-wrap;
+    color-scheme: dark;
   }
 
   .md-input-area:focus {
-    border-color: #3e8ed0;
-    box-shadow: 0 0 0 0.15rem color-mix(in srgb, #3e8ed0 20%, transparent);
+    border-color: #5ea7f0;
+    box-shadow: 0 0 0 0.15rem rgba(94, 167, 240, 0.28);
     outline: none;
+  }
+
+  .md-input-area::placeholder {
+    color: rgba(238, 242, 255, 0.52);
+  }
+
+  .md-input-area::selection {
+    background: rgba(47, 125, 244, 0.38);
+    color: #ffffff;
   }
 
   .md-link-modal-backdrop {

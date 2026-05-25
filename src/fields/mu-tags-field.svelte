@@ -71,9 +71,10 @@
 
   span {
     align-items: center;
-    background: #f1f5f9;
+    background: #1b2030;
+    border: 1px solid #394152;
     border-radius: 999px;
-    color: #1f2937;
+    color: #eef2ff;
     display: inline-flex;
     font-size: 1rem;
     gap: 0.35rem;
@@ -84,7 +85,7 @@
 
   button {
     align-items: center;
-    background: #94a3b8;
+    background: #5e6a7d;
     border: 0;
     border-radius: 999px;
     color: #ffffff;
@@ -103,15 +104,29 @@
   }
 
   button:hover {
-    background: #64748b;
+    background: #7a8798;
   }
 
   input {
-    border: 1px solid #d7dde4;
+    border: 1px solid #394152;
     border-radius: 0.35rem;
+    background-color: #161b28;
+    background-image: linear-gradient(180deg, #1b2030, #161b28);
+    color: #eef2ff;
+    caret-color: #8ec5ff;
     flex: 1 1 12rem;
     min-height: 2.35rem;
     min-width: 8rem;
     padding: 0 0.65rem;
+  }
+
+  input:focus {
+    border-color: #5ea7f0;
+    box-shadow: 0 0 0 0.15rem rgba(94, 167, 240, 0.28);
+    outline: none;
+  }
+
+  input::placeholder {
+    color: rgba(238, 242, 255, 0.52);
   }
 </style>
